@@ -128,19 +128,21 @@ class NewsController extends Controller
     public function update(NewsUpdateRequest $request, $id)
     {
         try {
-            $inputs = $request->all();
+            $inputs = $request->except(['_token', '_method']);
 
             $news = $this->newsRepo->findById($id);
-            StorageService::deleteFile($news->image);
-            StorageService::deleteFile($news->video);
-            StorageService::deleteFile($news->attachment);
-
-            $inputs['news_id'] = 'abcyzx234as';
-            //$inputs['news_id'] = StorageService::uuid();
-
-            $inputs['image'] = StorageService::store($request->file('image'), 'uploads/news')['url'];
-            $inputs['video'] = StorageService::store($request->file('video'), 'uploads/news')['url'];
-            $inputs['attachment'] = StorageService::store($request->file('attachment'), 'uploads/news')['url'];
+            if ($request->hasFile('image')) {
+                $inputs['image'] = StorageService::store($request->file('image'), 'uploads/news')['url'];
+                StorageService::deleteFile($news->image);
+            }
+            if ($request->hasFile('video')) {
+                $inputs['video'] = StorageService::store($request->file('video'), 'uploads/news')['url'];
+                StorageService::deleteFile($news->video);
+            }
+            if ($request->hasFile('attachment')) {
+                $inputs['attachment'] = StorageService::store($request->file('attachment'), 'uploads/news')['url'];
+                StorageService::deleteFile($news->attachment);
+            }
 
             if ($this->newsRepo->update($inputs, $id)) {
                 Session::flash('success', 'Successfully updated news');
