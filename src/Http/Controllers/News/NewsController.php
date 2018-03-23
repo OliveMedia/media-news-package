@@ -29,9 +29,13 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = $this->newsRepo->paginate();
+        try {
+            $news = $this->newsRepo->paginate();
 
-        return view("OliveMediaNews::news.index", ['news' => $news]);
+            return view("OliveMediaNews::news.index", ['news' => $news]);
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
     }
 
     /**
@@ -41,7 +45,11 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('OliveMediaNews::news.create');
+        try {
+            return view('OliveMediaNews::news.create');
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
     }
 
     /**
@@ -52,23 +60,27 @@ class NewsController extends Controller
      */
     public function store(NewsStoreRequest $request)
     {
-        $inputs = $request->all();
+        try {
+            $inputs = $request->all();
 
-        $inputs['news_id'] = 'abcyzx234as';
-        //$inputs['news_id'] = StorageService::uuid();
+            $inputs['news_id'] = 'abcyzx234as';
+            //$inputs['news_id'] = StorageService::uuid();
 
-        $inputs['image'] = StorageService::store($request->file('image'), 'uploads/news')['url'];
-        $inputs['video'] = StorageService::store($request->file('video'))['url'];
-        $inputs['attachment'] = StorageService::store($request->file('attachment'))['url'];
+            $inputs['image'] = StorageService::store($request->file('image'), 'uploads/news')['url'];
+            $inputs['video'] = StorageService::store($request->file('video'), 'uploads/news')['url'];
+            $inputs['attachment'] = StorageService::store($request->file('attachment'), 'uploads/news')['url'];
 
-        if ($this->newsRepo->create($inputs)) {
-            Session::flash('success', 'Successfully created news');
+            if ($this->newsRepo->create($inputs)) {
+                Session::flash('success', 'Successfully created news');
 
-            return redirect()->action('\OliveMedia\OliveMediaNews\Http\Controllers\News\NewsController@index');
+                return redirect()->action('\OliveMedia\OliveMediaNews\Http\Controllers\News\NewsController@index');
+            }
+
+            Session::flash('error', 'Sorry!! Error occur while creating news');
+            return redirect()->back();
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
         }
-
-        Session::flash('error', 'Sorry!! Error occured while creating news');
-        return redirect()->back();
     }
 
     /**
@@ -79,7 +91,13 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $news = $this->newsRepo->findById($id);
+
+            return view("OliveMediaNews::news.view", ['news' => $news]);
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
     }
 
     /**
@@ -90,7 +108,14 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $news = $this->newsRepo->findById($id);
+
+            return view("OliveMediaNews::news.edit", ['news' => $news]);
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
+
     }
 
     /**
@@ -102,7 +127,32 @@ class NewsController extends Controller
      */
     public function update(NewsUpdateRequest $request, $id)
     {
-        //
+        try {
+            $inputs = $request->all();
+
+            $news = $this->newsRepo->findById($id);
+            StorageService::deleteFile($news->image);
+            StorageService::deleteFile($news->video);
+            StorageService::deleteFile($news->attachment);
+
+            $inputs['news_id'] = 'abcyzx234as';
+            //$inputs['news_id'] = StorageService::uuid();
+
+            $inputs['image'] = StorageService::store($request->file('image'), 'uploads/news')['url'];
+            $inputs['video'] = StorageService::store($request->file('video'), 'uploads/news')['url'];
+            $inputs['attachment'] = StorageService::store($request->file('attachment'), 'uploads/news')['url'];
+
+            if ($this->newsRepo->update($inputs, $id)) {
+                Session::flash('success', 'Successfully updated news');
+
+                return redirect()->action('\OliveMedia\OliveMediaNews\Http\Controllers\News\NewsController@index');
+            }
+
+            Session::flash('error', 'Sorry!! Error occur while creating news');
+            return redirect()->back();
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
     }
 
     /**
@@ -113,9 +163,19 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        if ($this->newsRepo->delete($id)) {
-            Session::flash('success', "Successfully deleted news");
-            return redirect()->back();
+        try {
+
+            $news = $this->newsRepo->findById($id);
+            StorageService::deleteFile($news->image);
+            StorageService::deleteFile($news->video);
+            StorageService::deleteFile($news->attachment);
+
+            if ($this->newsRepo->delete($id)) {
+                Session::flash('success', "Successfully deleted news");
+                return redirect()->back();
+            }
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
         }
 
     }

@@ -24,6 +24,20 @@ class StorageService
         }
     }
 
+    public static function deleteFile($filename)
+    {
+        try {
+            if (Config::get("OliveMediaNews.storage_media") == "local") {
+                return self::deleteFromLocalFile($filename);
+            } else {
+                return self::deleteFromS3Bucket($filename);
+            }
+
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+
     public static function storeToLocalFileSystem($file, $path = null, $access = 'public')
     {
         $path = public_path($path);
@@ -38,6 +52,16 @@ class StorageService
         return [
             'url' => $fullPath
         ];
+    }
+
+    public static function deleteFromLocalFile($filename)
+    {
+        if( file_exists($filename) && !empty($filename) ) {
+
+            return unlink($filename);
+        }
+
+        return false;
     }
 
     public static function storeToS3Bucket($file, $path = null, $access = 'public')
