@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends(config('OliveMediaNews.blade_template'))
 
 @section('title','Create News')
 

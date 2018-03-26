@@ -14,7 +14,7 @@
                 <h2>News</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">CONNECTed</a></li>
-                    <li class="breadcrumb-item"><a href="/news">News</a></li>{{ SESSION('success') }}
+                    <li class="breadcrumb-item"><a href="#">News</a></li>{{ SESSION('success') }}
                 </ol>
             </div>{{-- top-bar --}}
             <div class="row">

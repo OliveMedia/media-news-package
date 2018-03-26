@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends(config('OliveMediaNews.blade_template'))
 
-@section('title','News')
+@section('title','View News')
 
 @section('page-css')
 <link rel="stylesheet" type="text/css" href="/css/custom.css">
