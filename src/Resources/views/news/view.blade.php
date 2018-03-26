@@ -45,6 +45,26 @@
                                                     <span class="col-md-3 info-title">Description:</span><span
                                                             class="col-md-7">{{$news->description}}</span>
                                                 </div>
+
+                                                <div class="row">
+                                                    <span class="col-md-5">
+                                                        @if($news->video)
+                                                            <video width="320" height="240" controls>
+                                                                <source src="{{ $news->video }}" type="video/mp4">
+                                                                Your browser does not support the video tag.
+                                                            </video>
+                                                        @else
+                                                        @endif
+                                                    </span>
+                                                </div>
+                                                <div class="row">
+                                                    <span class="col-md-5">
+                                                        @if($news->attachment)
+                                                            <a href="{{ $news->attachment }}" target="_blank">File</a>
+                                                        @else
+                                                        @endif
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row float-right">
@@ -55,12 +75,12 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>{{-- profile-holder --}}
+
+                            </div>
                         </div>
-                    </div>
-                </div>{{-- card-body --}}
-            </div>{{-- card--}}
-        </div>
+                    </div>{{-- card-body --}}
+                </div>{{-- card--}}
+            </div>
         </div>
         </div>
     </main>

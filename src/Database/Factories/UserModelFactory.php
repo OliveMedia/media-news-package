@@ -15,6 +15,7 @@
 $factory->define(OliveMedia\OliveMediaNews\Entities\News\News::class, function (Faker\Generator $faker) {
 
     return [
+        'user_id' => "abc-xyz",
         'title' => $faker->name,
         'description' => $faker->text,
         'image' => $faker->image('public/storage/images', 400, 300, null, false),

@@ -11,9 +11,9 @@
     <main class="site-main course-management main-content-mgmt">
         <div class="container-fluid">
             <div class="top-bar clearfix ">
-                <h2>Courses</h2>
+                <h2>News</h2>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">{{ config('OliveMediaNews.site_name') }}</a></li>
+                    <li class="breadcrumb-item"><a href="/">CONNECTed</a></li>
                     <li class="breadcrumb-item"><a href="/news">News</a></li>{{ SESSION('success') }}
                 </ol>
             </div>{{-- top-bar --}}
@@ -34,8 +34,6 @@
                                 <thead>
                                 <th>Title</th>
                                 <th>Description</th>
-                                <th>Image</th>
-                                <th>Videos</th>
                                 <th>Action</th>
                                 </thead>
                                 <tbody>
@@ -43,8 +41,6 @@
                                     <tr>
                                         <td><span>{{$individualNews->title}}</span></td>
                                         <td><span>{{$individualNews->description}}</span></td>
-                                        <td><span>{{$individualNews->image}}</span></td>
-                                        <td><span>{{$individualNews->video}}</span></td>
                                         <td>
                                             <div class="btn-group">
                                                 <button type="button" data-toggle="dropdown" aria-haspopup="true"
@@ -53,8 +49,6 @@
                                                 </button>
                                                 <div class="dropdown-menu" x-placement="top-start">
                                                     @if($individualNews->deleted_at)
-                                                        <a href="{{ route('course.restore',$individualNews->course_id)}}"
-                                                           class="dropdown-item">Restore</a>
                                                     @else
                                                         <a href="{{ route("news.show", $individualNews->id) }}"
                                                            class="dropdown-item">View</a>

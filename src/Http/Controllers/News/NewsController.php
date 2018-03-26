@@ -30,7 +30,7 @@ class NewsController extends Controller
     public function index()
     {
         try {
-            $news = $this->newsRepo->paginate();
+            $news = $this->newsRepo->paginateBy(\Auth::user()->user_id, 'user_id');
 
             return view("OliveMediaNews::news.index", ['news' => $news]);
         } catch (\Exception $ex) {
@@ -65,6 +65,7 @@ class NewsController extends Controller
 
             $inputs['news_id'] = 'abcyzx234as';
             //$inputs['news_id'] = StorageService::uuid();
+            $inputs['user_id'] = \Auth::user()->user_id;
 
             $inputs['image'] = StorageService::store($request->file('image'), 'public/uploads/news')['url'];
             $inputs['video'] = StorageService::store($request->file('video'), 'public/uploads/news')['url'];

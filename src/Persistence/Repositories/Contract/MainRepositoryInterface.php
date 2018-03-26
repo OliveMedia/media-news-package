@@ -56,4 +56,12 @@ interface MainRepositoryInterface
      * @return \Illuminate\Pagination\Paginator
      */
     public function paginate($perPage = 15, $columns = ['*']);
+
+    /**
+     * Paginate all by attribute
+     * @param  integer $perPage
+     * @param  array   $columns
+     * @return \Illuminate\Pagination\Paginator
+     */
+    public function paginateBy($value, $attribute, $perPage = 15, $columns = ['*']);
 }

@@ -107,6 +107,17 @@ abstract class EloquentRepository implements MainRepositoryInterface
         return $this->modelClassName::orderBy('id', 'desc')->paginate($perPage, $columns);
     }
 
+    /**
+     * Paginate all
+     * @param  integer $perPage
+     * @param  array   $columns
+     * @return \Illuminate\Pagination\Paginator
+     */
+    public function paginateBy($value, $attribute, $perPage = 15, $columns = ['*'])
+    {
+        return $this->modelClassName::where($attribute, '=', $value)->orderBy('id', 'desc')->paginate($perPage, $columns);
+    }
+
 
 
     public function find($attribute, $data)

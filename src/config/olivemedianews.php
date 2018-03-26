@@ -6,5 +6,5 @@ return [
 
     "blade_template" => "layouts.app",
 
-    "storage_media" => "local"
+    "storage_media" => "s3"
 ];

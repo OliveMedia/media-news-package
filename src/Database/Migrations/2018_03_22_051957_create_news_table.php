@@ -17,6 +17,7 @@ class CreateNewsTable extends Migration
             $table->increments('id');
 
             $table->string('news_id');
+            $table->string('user_id');
             $table->string('title');
             $table->text('description');
             $table->string('image');
@@ -24,6 +25,11 @@ class CreateNewsTable extends Migration
             $table->string('attachment');
 
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('user_id')->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 
