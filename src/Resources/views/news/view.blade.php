@@ -10,7 +10,7 @@
     <main class="site-main view main-content-mgmt view-course">
         <div class="container-fluid">
             <div class="top-bar clearfix ">
-                <h2>Details</h2>
+                <h2>View</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">CONNECTed</a></li>
                     <li class="breadcrumb-item"><a href="/console/news">News</a></li>

@@ -47,7 +47,7 @@ class StorageService
 
         $fileName = time() . str_random(10) . '.' . $extension;
 
-        $fullPath = $uploadUrl . '/' . $fileName;
+        $fullPath = $path . '/' . $fileName;
 
         $file->move($path, $fileName);
 
@@ -81,6 +81,11 @@ class StorageService
             'key' => $new_path,
             'url' => $url
         ];
+    }
+
+    public static function deleteFromS3Bucket($filename)
+    {
+        return false;
     }
 
     public static function get($file_name)
