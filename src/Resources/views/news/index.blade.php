@@ -54,16 +54,8 @@
                                                            class="dropdown-item">View</a>
                                                         <a href="{{ route("news.edit", $individualNews->news_id) }}"
                                                            class="dropdown-item">Edit</a>
-                                                           <a href="#">
-                                                           <form method="post" action="{{ route('news.destroy', $individualNews->news_id) }}">
-                                                               @csrf
-                                                               {{ method_field('DELETE') }}
-
-                                                               <button type="submit" class="">Delete</button>
-
-
-                                                           </form>
-                                                             </a>
+                                                        <a class="dropdown-item delete-news" href="#"
+                                                           data-news_id="{{ $individualNews->news_id }}">Delete</a>
                                                     @endif
                                                 </div>
                                             </div>
@@ -81,4 +73,52 @@
             </div>{{-- row --}}
         </div>{{-- container-fluid --}}
     </main>
+
+    <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-info" role="document">
+            <div class="modal-content delete-model">
+                <div class="modal-header">
+                    <p class="heading lead">Delete User</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                </div>{{-- modal-header --}}
+                <div class="modal-body">
+                    <div class="delete-msg">
+                        <span>Are you sure you want to delete this user?</span>
+                    </div>
+                    <div class="float-left">
+                        <form method="post">
+                            @csrf
+                            {{ method_field('DELETE') }}
+
+                            <button type="submit" class="btn btn-danger waves-effect btn-sm">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                    <div class="float-right">
+                        <a type="button" class="btn btn-outline-danger waves-effect btn-sm"
+                           data-dismiss="modal">Cancel</a>
+                    </div>
+                </div>{{-- modal-body --}}
+            </div>{{-- modal-content --}}
+        </div>{{-- modal-dialog --}}
+    </div><!-- Delete Modal-->
+
 @endsection
+
+@section('page-script')
+    <script>
+        $('.delete-news').on('click', function (e) {
+            var newsId = $(this).data('news_id');
+            var url = '/console/news/' + newsId;
+
+            $('#deletemodal').find('form').attr('action', url);
+
+            $('#deletemodal').modal('show');
+        })
+    </script>
+@endsection
+
