@@ -29,7 +29,7 @@ class NewsStoreRequest extends FormRequest
             'description' => 'required|string',
             'image' => 'required|image|max:2000',
             'video' => 'required|mimes:mp4|max:5000',
-            'attachment' => 'required|mimes:doc,pdf|max:5000',
+            'attachment' => 'required|mimes:docx,doc,pdf|max:5000',
         ];
     }
 }

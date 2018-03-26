@@ -30,7 +30,7 @@ class NewsUpdateRequest extends FormRequest
             'description' => 'required|string',
             'image' => 'image|max:2000',
             'video' => 'mimes:mp4|max:5000',
-            'attachment' => 'mimes:doc,pdf|max:5000',
+            'attachment' => 'mimes:docx,doc,pdf|max:5000',
         ];
     }
 }

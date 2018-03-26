@@ -53,16 +53,17 @@
                                                         <a href="{{ route("news.show", $individualNews->news_id) }}"
                                                            class="dropdown-item">View</a>
                                                         <a href="{{ route("news.edit", $individualNews->news_id) }}"
-                                                           class="dropdown-item">Edit</a><hr>
+                                                           class="dropdown-item">Edit</a>
+                                                           <a href="#">
+                                                           <form method="post" action="{{ route('news.destroy', $individualNews->news_id) }}">
+                                                               @csrf
+                                                               {{ method_field('DELETE') }}
 
-                                                        <form method="post" action="{{ route('news.destroy', $individualNews->news_id) }}">
-                                                            @csrf
-                                                            {{ method_field('DELETE') }}
+                                                               <button type="submit" class="">Delete</button>
 
-                                                            <button type="submit" class="dropdown-item">Delete</button>
 
-                                                        </form>
-
+                                                           </form>
+                                                             </a>
                                                     @endif
                                                 </div>
                                             </div>
