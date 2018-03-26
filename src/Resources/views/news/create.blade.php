@@ -4,6 +4,16 @@
 
 @section('content')
     <div class="container">
+        <div class="container-fluid">
+            <div class="top-bar clearfix ">
+                <h2>Details</h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">CONNECTed</a></li>
+                    <li class="breadcrumb-item"><a href="/console/news">News</a></li>
+                    <li class="breadcrumb-item"><a href="#">Create News</a></li>
+                </ol>
+            </div>
+        </div>
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card card-default">
