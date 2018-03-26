@@ -38,14 +38,16 @@ class StorageService
         }
     }
 
-    public static function storeToLocalFileSystem($file, $path = null, $access = 'public')
+    public static function storeToLocalFileSystem($file, $pathToUpload = null, $access = 'public')
     {
-        $path = public_path($path);
+        $path = base_path($pathToUpload);
+        $uploadUrl = url($pathToUpload);
+
         $extension = $file->getClientOriginalExtension();
 
         $fileName = time() . str_random(10) . '.' . $extension;
 
-        $fullPath = $path . '/' . $fileName;
+        $fullPath = $uploadUrl . '/' . $fileName;
 
         $file->move($path, $fileName);
 

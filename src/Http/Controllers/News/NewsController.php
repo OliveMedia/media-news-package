@@ -66,9 +66,9 @@ class NewsController extends Controller
             $inputs['news_id'] = 'abcyzx234as';
             //$inputs['news_id'] = StorageService::uuid();
 
-            $inputs['image'] = StorageService::store($request->file('image'), 'uploads/news')['url'];
-            $inputs['video'] = StorageService::store($request->file('video'), 'uploads/news')['url'];
-            $inputs['attachment'] = StorageService::store($request->file('attachment'), 'uploads/news')['url'];
+            $inputs['image'] = StorageService::store($request->file('image'), 'public/uploads/news')['url'];
+            $inputs['video'] = StorageService::store($request->file('video'), 'public/uploads/news')['url'];
+            $inputs['attachment'] = StorageService::store($request->file('attachment'), 'public/uploads/news')['url'];
 
             if ($this->newsRepo->create($inputs)) {
                 Session::flash('success', 'Successfully created news');
@@ -132,15 +132,15 @@ class NewsController extends Controller
 
             $news = $this->newsRepo->findById($id);
             if ($request->hasFile('image')) {
-                $inputs['image'] = StorageService::store($request->file('image'), 'uploads/news')['url'];
+                $inputs['image'] = StorageService::store($request->file('image'), 'public/uploads/news')['url'];
                 StorageService::deleteFile($news->image);
             }
             if ($request->hasFile('video')) {
-                $inputs['video'] = StorageService::store($request->file('video'), 'uploads/news')['url'];
+                $inputs['video'] = StorageService::store($request->file('video'), 'public/uploads/news')['url'];
                 StorageService::deleteFile($news->video);
             }
             if ($request->hasFile('attachment')) {
-                $inputs['attachment'] = StorageService::store($request->file('attachment'), 'uploads/news')['url'];
+                $inputs['attachment'] = StorageService::store($request->file('attachment'), 'public/uploads/news')['url'];
                 StorageService::deleteFile($news->attachment);
             }
 
