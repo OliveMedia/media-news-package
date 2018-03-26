@@ -85,7 +85,12 @@ class StorageService
 
     public static function deleteFromS3Bucket($filename)
     {
-        return false;
+        $fileArray = (explode('/', $filename));
+        $path = base_path . '/' . end($fileArray);
+
+        if(Storage::disk('s3')->exists($path)) {
+            return (Storage::disk('s3')->delete($path));
+        }
     }
 
     public static function get($file_name)

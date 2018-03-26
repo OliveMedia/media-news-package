@@ -50,12 +50,12 @@
                                                 <div class="dropdown-menu" x-placement="top-start">
                                                     @if($individualNews->deleted_at)
                                                     @else
-                                                        <a href="{{ route("news.show", $individualNews->id) }}"
+                                                        <a href="{{ route("news.show", $individualNews->news_id) }}"
                                                            class="dropdown-item">View</a>
-                                                        <a href="{{ route("news.edit", $individualNews->id) }}"
+                                                        <a href="{{ route("news.edit", $individualNews->news_id) }}"
                                                            class="dropdown-item">Edit</a><hr>
 
-                                                        <form method="post" action="{{ route('news.destroy', $individualNews->id) }}">
+                                                        <form method="post" action="{{ route('news.destroy', $individualNews->news_id) }}">
                                                             @csrf
                                                             {{ method_field('DELETE') }}
 

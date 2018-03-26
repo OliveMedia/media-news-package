@@ -72,6 +72,19 @@ abstract class EloquentRepository implements MainRepositoryInterface
         return call_user_func_array("{$this->modelClassName}::destroy", array($id));
     }
 
+    /**
+     * Delete function
+     * Method Definition
+     * @param $id
+     *
+     * @return Object_
+     */
+    public function deleteBy($id, $attribute)
+    {
+        return $this->modelClassName::where($attribute, '=', $id)->delete();
+        // return call_user_func_array("{$this->modelClassName}::destroy", array($id));
+    }
+
     /*
    * findByID function
    * Method Definition

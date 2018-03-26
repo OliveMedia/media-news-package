@@ -70,7 +70,7 @@
                                         <div class="row float-right">
                                             <div class="btn-group">
                                                 <a class="btn btn-outline-primary waves-effect btn-sm edit-btn"
-                                                   href="{{ route('news.edit', $news->id) }}">Edit News</a>
+                                                   href="{{ route('news.edit', $news->news_id) }}">Edit News</a>
                                             </div>
                                         </div>
                                     </div>

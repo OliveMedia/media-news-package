@@ -20,7 +20,7 @@
                     <div class="card-header">Create News</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('news.update', $news->id) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('news.update', $news->news_id) }}" enctype="multipart/form-data">
                             @csrf
                             {{ method_field('PATCH') }}
 

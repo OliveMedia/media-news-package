@@ -5,6 +5,7 @@ namespace OliveMedia\OliveMediaNews\Http\Controllers\News;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 use OliveMedia\OliveMediaNews\Http\Request\News\NewsStoreRequest;
 use OliveMedia\OliveMediaNews\Http\Request\News\NewsUpdateRequest;
@@ -63,8 +64,7 @@ class NewsController extends Controller
         try {
             $inputs = $request->all();
 
-            $inputs['news_id'] = 'abcyzx234as';
-            //$inputs['news_id'] = StorageService::uuid();
+            $inputs['news_id'] = Str::orderedUuid();
             $inputs['user_id'] = \Auth::user()->user_id;
 
             $inputs['image'] = StorageService::store($request->file('image'), 'public/uploads/news')['url'];
@@ -93,7 +93,7 @@ class NewsController extends Controller
     public function show($id)
     {
         try {
-            $news = $this->newsRepo->findById($id);
+            $news = $this->newsRepo->findBy('news_id', $id);
 
             return view("OliveMediaNews::news.view", ['news' => $news]);
         } catch (\Exception $ex) {
@@ -110,7 +110,7 @@ class NewsController extends Controller
     public function edit($id)
     {
         try {
-            $news = $this->newsRepo->findById($id);
+            $news = $this->newsRepo->findBy('news_id', $id);
 
             return view("OliveMediaNews::news.edit", ['news' => $news]);
         } catch (\Exception $ex) {
@@ -131,7 +131,7 @@ class NewsController extends Controller
         try {
             $inputs = $request->except(['_token', '_method']);
 
-            $news = $this->newsRepo->findById($id);
+            $news = $this->newsRepo->findBy('news_id', $id);
             if ($request->hasFile('image')) {
                 $inputs['image'] = StorageService::store($request->file('image'), 'public/uploads/news')['url'];
                 StorageService::deleteFile($news->image);
@@ -145,7 +145,7 @@ class NewsController extends Controller
                 StorageService::deleteFile($news->attachment);
             }
 
-            if ($this->newsRepo->update($inputs, $id)) {
+            if ($this->newsRepo->update($inputs, $id, 'news_id')) {
                 Session::flash('success', 'Successfully updated news');
 
                 return redirect()->action('\OliveMedia\OliveMediaNews\Http\Controllers\News\NewsController@index');
@@ -167,13 +167,12 @@ class NewsController extends Controller
     public function destroy($id)
     {
         try {
-
-            $news = $this->newsRepo->findById($id);
+            $news = $this->newsRepo->findBy('news_id', $id);
             StorageService::deleteFile($news->image);
             StorageService::deleteFile($news->video);
             StorageService::deleteFile($news->attachment);
 
-            if ($this->newsRepo->delete($id)) {
+            if ($this->newsRepo->deleteBy($id, 'news_id')) {
                 Session::flash('success', "Successfully deleted news");
                 return redirect()->back();
             }
