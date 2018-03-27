@@ -13,7 +13,6 @@ class ExampleTest extends TestCase
      */
     public function testBasic()
     {
-
         $stack = [];
         $this->assertEquals(0, count($stack));
     }
