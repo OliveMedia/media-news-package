@@ -126,8 +126,9 @@
 # Installation 
 * No need to add providers in config/app.php since laravel auto package discovery feature is added
 	
-1. In order to install UserModule Package, just add the following to your composer.json  file in your laravel project              installation project. Then run  composer update
-
+1. In order to install UserModule Package, just add the following to your composer.json  file in your laravel project and update the composer              installation project. Then run  composer update
+    
+    
 # Usage
 * The resource url for news is news which prefixed by console
 ie https://yourdomain.com/console/news
@@ -147,4 +148,4 @@ php artisan vendor:publish --provider="OliveMedia\OliveMediaNews\OliveMediaNewsS
 php artisan vendor:publish --provider="OliveMedia\OliveMediaNews\OliveMediaNewsServiceProvider" --tag=views --force
 
 * Alternatively you can publish all the config, views and migration at the same time using below command
-- php artisan vendor:publish --provider="OliveMedia\OliveMediaNews\OliveMediaNewsServiceProvider"
+ php artisan vendor:publish --provider="OliveMedia\OliveMediaNews\OliveMediaNewsServiceProvider"

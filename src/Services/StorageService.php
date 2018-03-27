@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Config;
 
-define('base_path', 'connectedrms');
+define('base_path', Config::get('OliveMediaNews.base_aws_storage_path'));
 
 class StorageService
 {
