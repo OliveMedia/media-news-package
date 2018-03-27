@@ -124,6 +124,7 @@
     ---------------------------------------------------
     
 # Installation 
+* No need to add providers in config/app.php since laravel auto package discovery feature is added
 	
 1. In order to install UserModule Package, just add the following to your composer.json  file in your laravel project              installation project. Then run  composer update
 

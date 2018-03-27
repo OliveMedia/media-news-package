@@ -65,17 +65,17 @@ class OliveMediaNewsServiceProvider extends ServiceProvider
         //migration
         $this->publishes([
             __DIR__.'/Database/Migrations' => base_path('database/migrations')
-        ]);
+        ], 'migrations');
 
         //seeder
-        $this->publishes([
+        /*$this->publishes([
             __DIR__.'/Database/Seeds' => base_path('database/seeds')
-        ]);
+        ]);*/
 
         //database factory
-         $this->publishes([
+         /*$this->publishes([
             __DIR__.'/Database/Factories' => base_path('database/factories')
-         ]);
+         ]);*/
     }
 
     /**
@@ -87,7 +87,7 @@ class OliveMediaNewsServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/Resources/views' => base_path('resources/views/vendor/news')
-        ]);
+        ], 'views');
     }
 
     /**
@@ -108,7 +108,7 @@ class OliveMediaNewsServiceProvider extends ServiceProvider
         //config publish
         $this->publishes([
             __DIR__.'/config/olivemedianews.php' => config_path('olivemedianews.php')
-        ]);
+        ], 'config');
     }
 
 }
