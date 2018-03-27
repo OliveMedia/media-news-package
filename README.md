@@ -2,7 +2,7 @@
 
 # Requirement 
 1 AWS Configuration
-  Aws storage is used here so install aws package 
+* Aws storage is used here so install aws package. Update composer.json file with:
   
   "league/flysystem-aws-s3-v3": "^1.0",
   
@@ -14,7 +14,7 @@
   AWS_DEFAULT_REGION=xxxxxxxxxxxxx
      
 2 Parent blade template
-    - views/layouts/app.blade.php
+* views/layouts/app.blade.php
     
     The typical structure of app.blade.php should be like below:
     
@@ -128,7 +128,20 @@
 1. In order to install UserModule Package, just add the following to your composer.json  file in your laravel project              installation project. Then run  composer update
 
 # Usage
-The resource url for news is news which prefixed by console
+* The resource url for news is news which prefixed by console
 ie https://yourdomain.com/console/news
 
+* The news table contains following fields:
+'news_id',
+'user_id',
+'title',
+'description'
+'image',
+'video',
+'attachment'
 
+* You can either publish the migration or simply migrate it
+* If you want to modify views you can either publish views too
+
+* Alternatively you can publish all the config, views and migration at the same time using below command
+- php artisan vendor:publish --provider="OliveMedia\OliveMediaNews\OliveMediaNewsServiceProvider"
