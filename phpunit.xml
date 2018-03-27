@@ -9,9 +9,14 @@
     convertWarningsToExceptions="true"
     processIsolation="false">
     <testsuites>
-        <testsuite name ="OliveMediaNews Package Test Suite">
-            <directory>./tests/*</directory>
+        <testsuite name="Olive Media News Test Suite">
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src/</directory>
+        </whitelist>
+    </filter>
 
 </phpunit>
