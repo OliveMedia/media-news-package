@@ -142,7 +142,9 @@ ie https://yourdomain.com/console/news
 'attachment'
 
 * You can either publish the migration or simply migrate it
+php artisan vendor:publish --provider="OliveMedia\OliveMediaNews\OliveMediaNewsServiceProvider" --tag=migrations --force
 * If you want to modify views you can either publish views too
+php artisan vendor:publish --provider="OliveMedia\OliveMediaNews\OliveMediaNewsServiceProvider" --tag=views --force
 
 * Alternatively you can publish all the config, views and migration at the same time using below command
 - php artisan vendor:publish --provider="OliveMedia\OliveMediaNews\OliveMediaNewsServiceProvider"
