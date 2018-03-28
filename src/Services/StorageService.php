@@ -6,14 +6,14 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Config;
 
-define('base_path', Config::get('OliveMediaNews.base_aws_storage_path'));
+define('base_path', Config::get('media-news-package.base_aws_storage_path'));
 
 class StorageService
 {
     public static function store($file, $path = null, $access = 'public')
     {
         try {
-            if (Config::get("OliveMediaNews.storage_media") == "local") {
+            if (Config::get("media-news-package.storage_media") == "local") {
                 return self::storeToLocalFileSystem($file, $path, $access = 'public');
             } else {
                 return self::storeToS3Bucket($file, $path = null, $access = 'public');
@@ -27,7 +27,7 @@ class StorageService
     public static function deleteFile($filename)
     {
         try {
-            if (Config::get("OliveMediaNews.storage_media") == "local") {
+            if (Config::get("media-news-package.storage_media") == "local") {
                 return self::deleteFromLocalFile($filename);
             } else {
                 return self::deleteFromS3Bucket($filename);

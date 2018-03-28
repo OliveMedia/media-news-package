@@ -1,4 +1,4 @@
-@extends(config('OliveMediaNews.blade_template'))
+@extends(config('media-news-package'))
 
 @section('title','View News')
 

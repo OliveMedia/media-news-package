@@ -14,12 +14,12 @@ class OliveMediaNewsServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        $this->mergeConfigFrom(__DIR__ . '/config/olivemedianews.php', 'OliveMediaNews');
+        $this->mergeConfigFrom(__DIR__ . '/config/olivemedianews.php', 'media-news-package');
         
         require __DIR__.'/Routes/routes.php';
 
         //loading views
-        $this->loadViewsFrom(__DIR__.'/Resources/views', 'OliveMediaNews');
+        $this->loadViewsFrom(__DIR__.'/Resources/views', 'media-news-package');
 
         //publishing database file
         $this->publishDatabases();

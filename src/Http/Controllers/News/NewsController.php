@@ -33,7 +33,7 @@ class NewsController extends Controller
         try {
             $news = $this->newsRepo->paginateBy(\Auth::user()->user_id, 'user_id');
 
-            return view("OliveMediaNews::news.index", ['news' => $news]);
+            return view("media-news-package::news.index", ['news' => $news]);
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }
@@ -47,7 +47,7 @@ class NewsController extends Controller
     public function create()
     {
         try {
-            return view('OliveMediaNews::news.create');
+            return view('media-news-package::news.create');
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }
@@ -95,7 +95,7 @@ class NewsController extends Controller
         try {
             $news = $this->newsRepo->findBy('news_id', $id);
 
-            return view("OliveMediaNews::news.view", ['news' => $news]);
+            return view("media-news-package::news.view", ['news' => $news]);
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }
@@ -112,7 +112,7 @@ class NewsController extends Controller
         try {
             $news = $this->newsRepo->findBy('news_id', $id);
 
-            return view("OliveMediaNews::news.edit", ['news' => $news]);
+            return view("media-news-package::news.edit", ['news' => $news]);
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }
