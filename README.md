@@ -123,10 +123,24 @@
 
     ---------------------------------------------------
     
+3) users table must have unique user_id field of type string ie uuid
+
+    
 # Installation 
 * No need to add providers in config/app.php since laravel auto package discovery feature is added
 	
-1. In order to install this Package, just add the following to your composer.json  file in your laravel project and update the composer
+1. Directly require the repository ie update your composer.json with below lines
+*    "require": {
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "OliveMedia/media-news-package": "dev-master"
+    },
+
+*    "repositories": [
+        {
+            "type": "git",
+            "url":  "https://github.com/OliveMedia/media-news-package.git"
+        }
+    ]
     
     
 # Usage
