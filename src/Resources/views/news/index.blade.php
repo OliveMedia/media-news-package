@@ -40,7 +40,7 @@
                                 @foreach($news as $individualNews)
                                     <tr>
                                         <td><span>{{$individualNews->title}}</span></td>
-                                        <td><span>{{$individualNews->description}}</span></td>
+                                        <td><span>{!! $individualNews->description !!}</span></td>
                                         <td>
                                             <div class="btn-group">
                                                 <button type="button" data-toggle="dropdown" aria-haspopup="true"

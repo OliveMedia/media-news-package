@@ -176,3 +176,11 @@
         </div>
     </main>
 @endsection
+
+@section('page-script')
+    <script type="text/javascript">
+
+        CKEDITOR.replace('description');
+
+    </script>
+@endsection

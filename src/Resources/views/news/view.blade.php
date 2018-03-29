@@ -43,7 +43,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-3 info-title">Description:</div><div
-                                                class="col-md-7">{{$news->description}}</div>
+                                                class="col-md-7">{!! $news->description !!}</div>
                                             </div>
 
                                             <div class="row">
