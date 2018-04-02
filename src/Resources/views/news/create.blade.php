@@ -84,7 +84,7 @@
                                                 <strong>{{ $errors->first('image') }}</strong>
                                             </span>
                                         @else
-                                            <span class="invalid-feedback">
+                                            <span class="info">
                                                 <strong>The supported type are jpg, jpeg</strong>
                                             </span>
                                         @endif
@@ -106,7 +106,7 @@
                                         <strong>{{ $errors->first('video') }}</strong>
                                         </span>
                                         @else
-                                            <span class="invalid-feedback">
+                                            <span class="info">
                                                 <strong>The supported type is mp4</strong>
                                             </span>
                                         @endif
@@ -128,7 +128,7 @@
                                                 <strong>{{ $errors->first('attachment') }}</strong>
                                             </span>
                                         @else
-                                            <span class="invalid-feedback">
+                                            <span class="info">
                                                 <strong>The supported type are pdf,docx</strong>
                                             </span>
                                         @endif
