@@ -81,8 +81,12 @@
 
                                         @if ($errors->has('image'))
                                             <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('image') }}</strong>
-                                    </span>
+                                                <strong>{{ $errors->first('image') }}</strong>
+                                            </span>
+                                        @else
+                                            <span class="invalid-feedback">
+                                                <strong>The supported type are jpg, jpeg</strong>
+                                            </span>
                                         @endif
                                     </div>
                                 </div>
@@ -100,7 +104,11 @@
                                         @if ($errors->has('video'))
                                             <span class="invalid-feedback">
                                         <strong>{{ $errors->first('video') }}</strong>
-                                    </span>
+                                        </span>
+                                        @else
+                                            <span class="invalid-feedback">
+                                                <strong>The supported type is mp4</strong>
+                                            </span>
                                         @endif
                                     </div>
                                 </div>
@@ -116,9 +124,13 @@
                                                name="attachment">
 
                                         @if ($errors->has('attachment'))
+                                                    <span class="invalid-feedback">
+                                                <strong>{{ $errors->first('attachment') }}</strong>
+                                            </span>
+                                        @else
                                             <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('attachment') }}</strong>
-                                    </span>
+                                                <strong>The supported type are pdf,docx</strong>
+                                            </span>
                                         @endif
                                     </div>
                                 </div>

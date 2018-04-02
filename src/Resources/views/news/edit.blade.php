@@ -120,7 +120,7 @@
 
                                 <div class="form-group row">
                                     <div class="col-sm-3">
-                                        <label for="video" class="col-form-label text-md-right">Video Preivew</label>
+                                        <label for="video" class="col-form-label text-md-right">Video Preview</label>
                                     </div>
 
                                     <div class="col-md-7">
