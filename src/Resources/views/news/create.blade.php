@@ -84,8 +84,7 @@
                                                 <strong>{{ $errors->first('image') }}</strong>
                                             </span>
                                         @else
-                                            <span class="info">
-                                                <strong>The supported type are jpg, jpeg</strong>
+                                            <span class="form-text text-muted" style="font-style: italic">* The supported type are jpg, jpeg
                                             </span>
                                         @endif
                                     </div>
@@ -106,9 +105,7 @@
                                         <strong>{{ $errors->first('video') }}</strong>
                                         </span>
                                         @else
-                                            <span class="info">
-                                                <strong>The supported type is mp4</strong>
-                                            </span>
+                                            <span class="form-text text-muted" style="font-style: italic">* The supported type is mp4</span>
                                         @endif
                                     </div>
                                 </div>
@@ -128,8 +125,7 @@
                                                 <strong>{{ $errors->first('attachment') }}</strong>
                                             </span>
                                         @else
-                                            <span class="info">
-                                                <strong>The supported type are pdf,docx</strong>
+                                            <span class="form-text text-muted" style="font-style: italic">* The supported type are pdf,docx
                                             </span>
                                         @endif
                                     </div>
