@@ -14,13 +14,13 @@
                 <h2>News</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">CONNECTed</a></li>
-                    <li class="breadcrumb-item"><a href="#">News</a></li>{{ SESSION('success') }}
+                    <li class="breadcrumb-item"><a href="#">News</a></li>
                 </ol>
             </div>{{-- top-bar --}}
             <div class="row">
                 <div class="col-md-12">
                     <div class="card card-default">
-                        {{--@include('layouts.error')--}}
+                        @include('OliveMediaNewsPackage::news.error')
                         <div class="card-header">
                             <div class="row">
                                 <div class="bottom-bar col-sm-12 col-md-6 float-left">
