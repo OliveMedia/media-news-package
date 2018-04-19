@@ -52,4 +52,24 @@ class NewsHelper
         }
     }
 
+    public static function updateNews($newsData, $newsId)
+    {
+        try {
+            $news = News::where('news_id', $newsId)->update($newsData);
+            return $news;
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public static function deleteNews($newsId)
+    {
+        try {
+            $news = News::find($newsId);
+            return $news->delete();
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
+
 }
