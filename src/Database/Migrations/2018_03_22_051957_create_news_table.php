@@ -20,9 +20,9 @@ class CreateNewsTable extends Migration
             $table->string('user_id');
             $table->string('title');
             $table->text('description');
-            $table->string('image');
-            $table->string('video');
-            $table->string('attachment');
+            $table->string('image')->nullable();
+            $table->string('video')->nullable();
+            $table->string('attachment')->nullable();
 
             $table->timestamps();
 

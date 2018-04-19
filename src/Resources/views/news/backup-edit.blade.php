@@ -39,7 +39,7 @@
                                         <label for="title" class="col-form-label text-md-right">Title</label>
                                     </div>
 
-                                    <div class="col-sm-7">
+                                    <div class="col-md-7">
                                         <input id="title" type="text"
                                                class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}"
                                                name="title" value="{{ old('title', $news->title) }}" required autofocus>
@@ -58,7 +58,7 @@
                                                class="col-form-label text-md-right">Description</label>
                                     </div>
 
-                                    <div class="col-sm-7">
+                                    <div class="col-md-7">
                                     <textarea id="description"
                                               class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
                                               name="description"
@@ -77,7 +77,7 @@
                                         <label for="image" class="col-form-label text-md-right">Image</label>
                                     </div>
 
-                                    <div class="col-sm-3">
+                                    <div class="col-md-7">
                                         <input id="image" type="file"
                                                class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}"
                                                name="image">
@@ -88,7 +88,14 @@
                                     </span>
                                         @endif
                                     </div>
-                                    <div class="col-sm-4">
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-3">
+                                        <label for="image" class="col-form-label text-md-right">Image Preview</label>
+                                    </div>
+
+                                    <div class="col-md-7">
                                         <img src="{{$news->image}}" style="width:300px;">
                                     </div>
                                 </div>
@@ -98,7 +105,7 @@
                                         <label for="video" class="col-form-label text-md-right">Video</label>
                                     </div>
 
-                                    <div class="col-sm-3">
+                                    <div class="col-md-7">
                                         <input id="video" type="file"
                                                class="form-control{{ $errors->has('video') ? ' is-invalid' : '' }}"
                                                name="video">
@@ -109,19 +116,27 @@
                                     </span>
                                         @endif
                                     </div>
-                                    <div class="col-sm-4">
-                                        <video width="100%" height="395" controls>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-3">
+                                        <label for="video" class="col-form-label text-md-right">Video Preivew</label>
+                                    </div>
+
+                                    <div class="col-md-7">
+                                        <video width="700" height="395" controls>
                                             <source src="{{ $news->video }}" type="video/mp4">
                                             Your browser does not support the video tag.
                                         </video>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <div class="col-sm-3">
                                         <label for="attachment" class="col-form-label text-md-right">Attachment</label>
                                     </div>
 
-                                    <div class="col-sm-3">
+                                    <div class="col-md-7">
                                         <input id="attachment" type="file"
                                                class="form-control{{ $errors->has('attachment') ? ' is-invalid' : '' }}"
                                                name="attachment">
@@ -132,11 +147,21 @@
                                     </span>
                                         @endif
                                     </div>
-                                    <div class="col-sm-4">
-                                        <embed src="{{ $news->attachment }}" {{-- width="900px" --}} height="400px"/>
+
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-3">
+                                        <label for="attachment" class="col-form-label text-md-right">Attachment
+                                            Preview</label>
+                                    </div>
+
+                                    <div class="col-md-7">
+                                        <embed src="{{ $news->attachment }}" width="900px" height="400px"/>
                                     </div>
 
                                 </div>
+
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-7 add-btn float-right">

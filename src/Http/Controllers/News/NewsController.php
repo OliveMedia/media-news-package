@@ -65,11 +65,10 @@ class NewsController extends Controller
             $inputs = $request->all();
 
             $inputs['news_id'] = Str::orderedUuid();
-            $inputs['user_id'] = \Auth::user()->user_id;
 
-            $inputs['image'] = StorageService::store($request->file('image'), 'public/uploads/news')['url'];
-            $inputs['video'] = StorageService::store($request->file('video'), 'public/uploads/news')['url'];
-            $inputs['attachment'] = StorageService::store($request->file('attachment'), 'public/uploads/news')['url'];
+            $inputs['image'] = ($request->has('image')) ? StorageService::store($request->file('image'), 'public/uploads/news')['url'] : null;
+            $inputs['video'] = ($request->has('video')) ? StorageService::store($request->file('video'), 'public/uploads/news')['url'] : null;
+            $inputs['attachment'] = ($request->has('attachment')) ? StorageService::store($request->file('attachment'), 'public/uploads/news')['url'] : null;
 
             if ($this->newsRepo->create($inputs)) {
                 Session::flash('success', 'Successfully created news');
