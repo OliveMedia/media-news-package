@@ -7,7 +7,7 @@ use OliveMedia\OliveMediaNews\Entities\News\News;
 class NewsHelper
 {
 
-    public static function getNew($newsId)
+    public static function getNewsById($newsId)
     {
         try {
             $news = News::where('news_id', $newsId)->first();
@@ -43,7 +43,7 @@ class NewsHelper
     public static function createNews($newsData)
     {
         try {
-            $news['news_id'] = Str::orderedUuid();
+            $newsData['news_id'] = Str::orderedUuid();
 
             $news = News::create($newsData);
             return $news;
