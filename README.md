@@ -163,3 +163,47 @@ php artisan vendor:publish --provider="OliveMedia\OliveMediaNews\OliveMediaNewsS
 
 * Alternatively you can publish all the config, views and migration at the same time using below command
  php artisan vendor:publish --provider="OliveMedia\OliveMediaNews\OliveMediaNewsServiceProvider"
+ 
+ 
+ ### Using Alias to control news
+ 
+ * OliveMediaNews is default alias
+ 
+ 
+ * usage example (user_id, title, and description are required field)
+ 
+ * Route::get('create-news', function () {
+ 
+     $news = OliveMediaNews::createNews([
+         'user_id' => "8a9e1be6-6959-46fd-a61a-4b76daabf604",
+         'title' => "TITLE",
+         'description' => "DESCRIPTION",
+         'image' => "image.jpg",
+         'video' => "image.jpg",
+         'attachment' => "image.jpg",
+     ]);
+ 
+     return $news;
+ });
+ 
+ * Route::get('get-news-by-id', function () {
+ 
+     $news = OliveMediaNews::getNewsById('8a9e88e5-8669-4248-9e7f-1ebf8ab5b78a');
+ 
+     return $news;
+ });
+ * Route::get('get-users-news', function () {
+ 
+     $news = OliveMediaNews::getUserNews('8a9e1be6-6959-46fd-a61a-4b76daabf604');
+ 
+     return $news;
+ });
+ * Route::get('get-all-news', function () {
+ 
+     $news = OliveMediaNews::getAllNews();
+ 
+     return $news;
+ });
+ 
+ 
+ 
