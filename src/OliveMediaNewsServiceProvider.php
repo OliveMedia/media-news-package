@@ -3,6 +3,8 @@
 namespace OliveMedia\OliveMediaNews;
 
 use Illuminate\Support\ServiceProvider;
+use OliveMedia\OliveMediaNews\Helpers\NewsHelper;
+use Illuminate\Foundation\AliasLoader;
 
 class OliveMediaNewsServiceProvider extends ServiceProvider
 {
@@ -51,6 +53,11 @@ class OliveMediaNewsServiceProvider extends ServiceProvider
             'OliveMedia\OliveMediaNews\Persistence\Repositories\Contract\NewsInterface',
             'OliveMedia\OliveMediaNews\Persistence\Repositories\Eloquent\NewsRepository'
         );
+
+        $this->app->booting(function() {
+            $loader = AliasLoader::getInstance();
+            $loader->alias('OliveMediaNews', NewsHelper::class);
+        });
     }
 
     /**
