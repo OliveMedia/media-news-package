@@ -18,6 +18,7 @@ class CreateNewsTable extends Migration
 
             $table->string('news_id')->unique();
             $table->string('user_id');
+            $table->string('organisation_id');
             $table->string('title');
             $table->text('description');
             $table->string('image')->nullable();
