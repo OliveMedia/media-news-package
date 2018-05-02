@@ -29,6 +29,17 @@ class NewsHelper
         }
     }
 
+    public static function getPaginatedNewsBy($attribute, $value, $perPage = 10)
+    {
+        try {
+            $news = News::where($attribute, $value)->orderBy('created_at', 'desc')->paginate($perPage);
+
+            return $news;
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
+
     public static function getAllNews($perPage = 10)
     {
         try {
