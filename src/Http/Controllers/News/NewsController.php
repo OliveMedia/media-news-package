@@ -31,7 +31,7 @@ class NewsController extends Controller
     public function index()
     {
         try {
-            $news = $this->newsRepo->paginateBy(\Auth::user()->user_id, 'user_id');
+            $news = $this->newsRepo->paginate();
 
             return view("OliveMediaNewsPackage::news.index", ['news' => $news]);
         } catch (\Exception $ex) {
