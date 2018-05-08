@@ -38,6 +38,28 @@
                                   @if($errors->consoleUpdateNews->first('description'))
                                   {!! $errors->consoleUpdateNews->first('description', '<span class="invalid-feedback"><strong>:message</strong></span>') !!}
                                   @endif
+                          <div class="file-uploads row">
+                              @if($indNews->description)
+                                  <div class="col-md-4 file-display" id='previewed-image'>
+              						<img id="image-perview" src="{{ $indNews->image }}" alt="" />
+              					</div>
+                                @endif
+                                @if($indNews->video)
+                                  <div class="col-md-4 file-display" id="previewed-video">
+          							<video id="video-preview" width="100px" height="100px"  controls>
+          								<source src="{{ $indNews->video }}" type="video/mp4">
+          								Your browser does not support the video tag.
+          							</video>
+          						</div>
+                                @endif
+                                @if($indNews->attachment)
+                                  <div class="col-md-4 file-display" id="previewed-attachment">
+                                          <a class="" href="{{ $indNews->attachment }}" target="_blank">
+                                              <i class="ion-archive" style="font-size: 50px !important;"></i>
+                                          </a>
+                  				</div>
+                                @endif
+            				</div>
                     </div>
 
                     <div class="row">
