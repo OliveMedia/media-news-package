@@ -13,7 +13,7 @@
 
             <!--Body-->
             <div class="modal-body">
-                <form method="POST" action="{{ route('news.update', $indNews->news_id) }}"
+                <form method="POST" action="{{ url('console/news/'.$indNews->news_id) }}"
                       enctype="multipart/form-data">
                     @csrf
                     {{ method_field('PATCH') }}
@@ -22,22 +22,22 @@
 
                         <label for="title" class="col-md-12 col-form-label">Title</label>
                         <input id="title" type="text"
-                               class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}"
+                               class="form-control{{ $errors->consoleUpdateNews->has('title') ? ' is-invalid' : '' }}"
                                name="title" value="{{ old('title', $indNews->title) }}" required autofocus>
 
-                        @if ($errors->has('title'))
-                            <span class="invalid-feedback"><strong>{{ $errors->first('title') }}</strong></span>
-                        @endif
+                               @if($errors->consoleUpdateNews->first('title'))
+                               {!! $errors->consoleUpdateNews->first('title', '<span class="invalid-feedback"><strong>:message</strong></span>') !!}
+                               @endif
                     </div>
                     <div class="form-group row md-form text-editor">
                         <label for="description" class="col-md-12 col-form-label">Description</label>
                         <textarea id="edit-description-{{$indNews->news_id}}"
-                                  class="form-control md-textarea{{ $errors->has('description') ? ' is-invalid' : '' }}"
+                                  class="form-control md-textarea{{ $errors->consoleUpdateNews->has('description') ? ' is-invalid' : '' }}"
                                   type="text-box"
                                   name="description" required="required">{{old('description', $indNews->description)}}</textarea>
-                        @if ($errors->has('description'))
-                            <span class="invalid-feedback"><strong>{{ $errors->first('description') }}</strong></span>
-                        @endif
+                                  @if($errors->consoleUpdateNews->first('description'))
+                                  {!! $errors->consoleUpdateNews->first('description', '<span class="invalid-feedback"><strong>:message</strong></span>') !!}
+                                  @endif
                     </div>
 
                     <div class="row">
@@ -46,12 +46,12 @@
                                 <label for="image" class="col-form-label">Image</label>
                                 <span></span>
                                 <input id="image" type="file"
-                                       class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}"
+                                       class="form-control{{ $errors->consoleUpdateNews->has('image') ? ' is-invalid' : '' }}"
                                        name="image">
 
-                                @if ($errors->has('image'))
-                                    <span class="invalid-feedback"><strong>{{ $errors->first('image') }}</strong></span>
-                                @endif
+                                       @if($errors->consoleUpdateNews->first('image'))
+                                       {!! $errors->consoleUpdateNews->first('image', '<span class="invalid-feedback"><strong>:message</strong></span>') !!}
+                                       @endif
                             </div>
                         </div>
 
@@ -60,12 +60,12 @@
                                 <label for="video" class="col-form-label">Video</label>
                                 <span></span>
                                 <input id="video" type="file"
-                                       class="form-control{{ $errors->has('video') ? ' is-invalid' : '' }}"
+                                       class="form-control{{ $errors->consoleUpdateNews->has('video') ? ' is-invalid' : '' }}"
                                        name="video">
 
-                                @if ($errors->has('video'))
-                                    <span class="invalid-feedback"><strong>{{ $errors->first('video') }}</strong></span>
-                                @endif
+                                       @if($errors->consoleUpdateNews->first('video'))
+                                       {!! $errors->consoleUpdateNews->first('video', '<span class="invalid-feedback"><strong>:message</strong></span>') !!}
+                                       @endif
                             </div>
                         </div>
 
@@ -74,12 +74,12 @@
                                 <label for="attachment" class="col-form-label">Attachment</label>
                                 <span></span>
                                 <input id="attachment" type="file"
-                                       class="form-control{{ $errors->has('attachment') ? ' is-invalid' : '' }}"
+                                       class="form-control{{ $errors->consoleUpdateNews->has('attachment') ? ' is-invalid' : '' }}"
                                        name="attachment">
 
-                                @if ($errors->has('attachment'))
-                                    <span class="invalid-feedback"><strong>{{ $errors->first('attachment') }}</strong></span>
-                                @endif
+                                       @if($errors->consoleUpdateNews->first('attachment'))
+                                       {!! $errors->consoleUpdateNews->first('attachment', '<span class="invalid-feedback"><strong>:message</strong></span>') !!}
+                                       @endif
                             </div>
                         </div>
                     </div>

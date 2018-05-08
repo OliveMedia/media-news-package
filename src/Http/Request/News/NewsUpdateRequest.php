@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class NewsUpdateRequest extends FormRequest
 {
+    protected $errorBag = 'consoleUpdateNews';
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,8 +24,9 @@ class NewsUpdateRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
+        $request->session()->flash('news_id', $request->get('news_id'));
         return [
             'title' => 'required|string',
             'description' => 'required|string',
