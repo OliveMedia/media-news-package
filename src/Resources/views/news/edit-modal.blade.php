@@ -34,7 +34,7 @@
                         <textarea id="edit-description-{{$indNews->news_id}}"
                                   class="form-control md-textarea{{ $errors->consoleUpdateNews->has('description') ? ' is-invalid' : '' }}"
                                   type="text-box"
-                                  name="description" required="required">{{old('description', $indNews->description)}}</textarea>
+                                  name="description">{{old('description', $indNews->description)}}</textarea>
                                   @if($errors->consoleUpdateNews->first('description'))
                                   {!! $errors->consoleUpdateNews->first('description', '<span class="invalid-feedback"><strong>:message</strong></span>') !!}
                                   @endif

@@ -29,10 +29,10 @@ class NewsUpdateRequest extends FormRequest
         $request->session()->flash('news_id', $request->get('news_id'));
         return [
             'title' => 'required|string',
-            'description' => 'required|string',
-            'image' => 'image|max:2000',
-            'video' => 'mimes:mp4|max:5000',
-            'attachment' => 'mimes:docx,doc,pdf|max:5000',
+            'description' => 'nullable|string|required_without_all:image,video',
+            'image' => 'nullable|image|max:2000|required_without_all:description,video',
+            'video' => 'nullable|mimes:mp4|max:500000|required_without_all:image,description',
+            'attachment' => 'nullable|mimes:docx,doc,pdf|max:5000',
         ];
     }
 }
