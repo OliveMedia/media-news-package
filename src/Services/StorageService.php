@@ -68,19 +68,24 @@ class StorageService
 
     public static function storeToS3Bucket($file, $path = null, $access = 'public')
     {
-        $path = base_path . $path;
-        $extension = $file->getClientOriginalExtension();
+        try {
+            $path = base_path . $path;
+            $extension = $file->getClientOriginalExtension();
 
-        $new_path = $path . '/' . $file->hashName() . '.' . $extension;
+            $new_path = $path . '/' . $file->hashName() . '.' . $extension;
 
-        Storage::disk('s3')->put($new_path, File::get($file), $access);
+            Storage::disk('s3')->put($new_path, File::get($file), $access);
 
-        $url = Storage::disk('s3')->url($new_path);
+            $url = Storage::disk('s3')->url($new_path);
 
-        return [
-            'key' => $new_path,
-            'url' => $url
-        ];
+            return [
+                'key' => $new_path,
+                'url' => $url
+            ];
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error',$e->getMessage());
+        }
+
     }
 
     public static function deleteFromS3Bucket($filename)
