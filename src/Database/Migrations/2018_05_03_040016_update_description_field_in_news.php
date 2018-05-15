@@ -26,7 +26,7 @@ class UpdateDescriptionFieldInNews extends Migration
     public function down()
     {
         Schema::table('news', function (Blueprint $table) {
-            $table->text('description');
+            $table->text('description')->change();
         });
     }
 }
