@@ -4,6 +4,7 @@ namespace OliveMedia\OliveMediaNews;
 
 use Illuminate\Support\ServiceProvider;
 use OliveMedia\OliveMediaNews\Helpers\NewsHelper;
+use OliveMedia\OliveMediaNews\Helpers\MediaNewsHelper;
 use Illuminate\Foundation\AliasLoader;
 
 class OliveMediaNewsServiceProvider extends ServiceProvider
@@ -35,6 +36,8 @@ class OliveMediaNewsServiceProvider extends ServiceProvider
         // publishing config
         $this->publishConfigs();
 
+        // publishing model
+        $this->publishModels();
     }
 
     /**
@@ -57,6 +60,7 @@ class OliveMediaNewsServiceProvider extends ServiceProvider
         $this->app->booting(function() {
             $loader = AliasLoader::getInstance();
             $loader->alias('OliveMediaNews', NewsHelper::class);
+            $loader->alias('MediaNewsHelper', MediaNewsHelper::class);
         });
     }
 
@@ -116,6 +120,14 @@ class OliveMediaNewsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/config/olivemedianews.php' => config_path('olivemedianews.php')
         ], 'config');
+    }
+
+    public function publishModels()
+    {
+        //model publish
+        $this->publishes([
+            __DIR__.'/Entities/News/MediaNews.php' => base_path('app/Entities')
+        ], 'model');
     }
 
 }
