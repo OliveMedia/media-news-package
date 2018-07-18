@@ -126,7 +126,7 @@ class OliveMediaNewsServiceProvider extends ServiceProvider
     {
         //model publish
         $this->publishes([
-            __DIR__.'/Entities/News/MediaNews.php' => base_path('app/Entities')
+            __DIR__.'/Entities/News/MediaNews.php' => base_path('app/Entities/MediaNews.php')
         ], 'model');
     }
 
