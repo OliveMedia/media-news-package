@@ -22,6 +22,7 @@ class MediaNews extends Model
      */
     protected $fillable = [
         'news_id',
+        'user_id',
         'title',
         'description',
         'image',

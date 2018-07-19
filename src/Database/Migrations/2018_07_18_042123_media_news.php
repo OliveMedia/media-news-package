@@ -17,6 +17,7 @@ class MediaNews extends Migration
             $table->increments('id');
 
             $table->string('news_id')->unique();
+            $table->string('user_id')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->string('image')->nullable();
