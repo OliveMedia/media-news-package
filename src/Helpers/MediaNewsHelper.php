@@ -6,11 +6,17 @@ use OliveMedia\OliveMediaNews\Entities\News\MediaNews;
 
 class MediaNewsHelper
 {
+    protected $mediaNews;
 
-    public static function getNewsById($newsId)
+    public function __construct($newsObj)
+    {
+        $this->mediaNews = $newsObj;
+    }
+
+    public function getNewsById($newsId)
     {
         try {
-            $news = MediaNews::where('news_id', $newsId)->first();
+            $news = $this->mediaNews->where('news_id', $newsId)->first();
 
             return $news;
         } catch (\Exception $ex) {
@@ -18,10 +24,10 @@ class MediaNewsHelper
         }
     }
 
-    public static function getPaginatedNewsBy($attribute, $value, $perPage = 10)
+    public function getPaginatedNewsBy($attribute, $value, $perPage = 10)
     {
         try {
-            $news = MediaNews::where($attribute, $value)->orderBy('created_at', 'desc')->paginate($perPage);
+            $news = $this->mediaNews->where($attribute, $value)->orderBy('created_at', 'desc')->paginate($perPage);
 
             return $news;
         } catch (\Exception $ex) {
@@ -29,10 +35,10 @@ class MediaNewsHelper
         }
     }
 
-    public static function getAllNews($perPage = 10)
+    public function getAllNews($perPage = 10)
     {
         try {
-            $news = MediaNews::orderBy('created_at', 'desc')->paginate($perPage);
+            $news = $this->mediaNews->orderBy('created_at', 'desc')->paginate($perPage);
 
             return $news;
         } catch (\Exception $ex) {
@@ -40,10 +46,10 @@ class MediaNewsHelper
         }
     }
 
-    public static function getAllNewsWithTrash($perPage = 10)
+    public function getAllNewsWithTrash($perPage = 10)
     {
         try {
-            $news = MediaNews::orderBy('created_at', 'desc')
+            $news = $this->mediaNews->orderBy('created_at', 'desc')
                 ->withTrashed()
                 ->paginate($perPage);
 
@@ -53,10 +59,10 @@ class MediaNewsHelper
         }
     }
 
-    public static function getAllTrashedNews($perPage = 10)
+    public function getAllTrashedNews($perPage = 10)
     {
         try {
-            $news = MediaNews::orderBy('created_at', 'desc')
+            $news = $this->mediaNews->orderBy('created_at', 'desc')
                 ->onlyTrashed()
                 ->paginate($perPage);
 
@@ -66,42 +72,42 @@ class MediaNewsHelper
         }
     }
 
-    public static function createNews($newsData)
+    public function createNews($newsData)
     {
         try {
             $newsData['news_id'] = Str::orderedUuid();
 
-            $news = MediaNews::create($newsData);
+            $news = $this->mediaNews->create($newsData);
             return $news;
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }
     }
 
-    public static function updateNews($newsData, $newsId)
+    public function updateNews($newsData, $newsId)
     {
         try {
-            $news = MediaNews::where('news_id', $newsId)->update($newsData);
+            $news = $this->mediaNews->where('news_id', $newsId)->update($newsData);
             return $news;
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }
     }
 
-    public static function deleteNews($newsId)
+    public function deleteNews($newsId)
     {
         try {
-            $news = MediaNews::where('news_id', $newsId)->first();
+            $news = $this->mediaNews->where('news_id', $newsId)->first();
             return $news->delete();
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }
     }
 
-    public static function restoreNews($newsId)
+    public function restoreNews($newsId)
     {
         try {
-            $news = MediaNews::where('news_id', $newsId)->restore();
+            $news = $this->mediaNews->where('news_id', $newsId)->restore();
 
             return $news;
         } catch (\Exception $ex) {
@@ -109,10 +115,10 @@ class MediaNewsHelper
         }
     }
 
-    public static function forceDeleteNews($newsId)
+    public function forceDeleteNews($newsId)
     {
         try {
-            $news = MediaNews::where('news_id', $newsId)->first();
+            $news = $this->mediaNews->where('news_id', $newsId)->first();
             return $news->forceDelete();
         } catch (\Exception $ex) {
             return $ex->getMessage();
